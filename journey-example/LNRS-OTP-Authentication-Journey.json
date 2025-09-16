@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "origin": "https://openam-tntp-lnupg-test.forgeblocks.com/platform/?realm=alpha#/journeys/LNRS-OTP-Authentication",
+    "exportedBy": "Eric.Uythoven@lexisnexisrisk.com",
+    "exportDate": "2025-09-09T23:52:11.015Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "LNRS-OTP-Authentication"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "LNRS-OTP-Authentication": {
+      "tree": {
+        "_id": "LNRS-OTP-Authentication",
+        "_rev": "1437617661",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "8f275138-c5ed-4ea1-b5b5-fcf15a881a46",
+        "innerTreeOnly": false,
+        "description": "Simple journey data flow ti inject username into shared state, then invoke inner tree for additional ste-up MFA processing.",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "uiConfig": {
+          "categories": "[\"Authentication\"]"
+        },
+        "nodes": {
+          "8f275138-c5ed-4ea1-b5b5-fcf15a881a46": {
+            "x": 172,
+            "y": 209.76666259765625,
+            "connections": {
+              "outcome": "4c960589-a0f9-42f5-b54a-fb92144192dc"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Collect Username"
+          },
+          "4c960589-a0f9-42f5-b54a-fb92144192dc": {
+            "x": 480,
+            "y": 229.76666259765625,
+            "connections": {
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "InnerTreeEvaluatorNode",
+            "displayName": "LNRS MFA"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 250
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 781,
+            "y": 234
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 780,
+            "y": 322
+          }
+        }
+      },
+      "nodes": {
+        "8f275138-c5ed-4ea1-b5b5-fcf15a881a46": {
+          "_id": "8f275138-c5ed-4ea1-b5b5-fcf15a881a46",
+          "_rev": "1586014379",
+          "nodes": [
+            {
+              "_id": "ca1e2690-9eea-4e02-8567-284203ae1d28",
+              "nodeType": "UsernameCollectorNode",
+              "displayName": "Username Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Please enter the following user information"
+          },
+          "pageHeader": {
+            "en": "LexisNexis MFA Demo"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "4c960589-a0f9-42f5-b54a-fb92144192dc": {
+          "_id": "4c960589-a0f9-42f5-b54a-fb92144192dc",
+          "_rev": "-1389120779",
+          "displayErrorOutcome": false,
+          "tree": "LNRS-StepUp-OTP",
+          "_type": {
+            "_id": "InnerTreeEvaluatorNode",
+            "name": "Inner Tree Evaluator",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "ca1e2690-9eea-4e02-8567-284203ae1d28": {
+          "_id": "ca1e2690-9eea-4e02-8567-284203ae1d28",
+          "_rev": "712134081",
+          "_type": {
+            "_id": "UsernameCollectorNode",
+            "name": "Username Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
