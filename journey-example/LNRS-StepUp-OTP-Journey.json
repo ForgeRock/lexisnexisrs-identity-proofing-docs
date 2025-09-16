@@ -1,0 +1,408 @@
+{
+  "meta": {
+    "origin": "https://openam-tntp-lnupg-test.forgeblocks.com/platform/?realm=alpha#/journeys",
+    "exportedBy": "Eric.Uythoven@lexisnexisrisk.com",
+    "exportDate": "2025-09-10T00:13:18.426Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "LNRS-StepUp-OTP"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "LNRS-StepUp-OTP": {
+      "tree": {
+        "_id": "LNRS-StepUp-OTP",
+        "_rev": "-1313813420",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "630e51f8-31fb-4227-84b8-97a563ac1b1f",
+        "innerTreeOnly": false,
+        "description": "OTP Step-Up journey used for Multi-Factor Authentication (MFA)",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "uiConfig": {
+          "categories": "[\"Authentication\"]"
+        },
+        "nodes": {
+          "bc7eb614-10ca-4d22-b1d0-74dbacfe2486": {
+            "x": 518,
+            "y": 82.76666259765625,
+            "connections": {
+              "SUBMIT": "97d454d1-3956-4e53-a431-bba015204eae",
+              "ERROR": "6a34c198-871b-480c-9920-eaf75a5be8be",
+              "RETRY": "36b99000-38be-4a00-8dc4-1bc2b530f30e"
+            },
+            "nodeType": "PageNode",
+            "displayName": "OTP COLLECTOR"
+          },
+          "97d454d1-3956-4e53-a431-bba015204eae": {
+            "x": 922,
+            "y": 11.76666259765625,
+            "connections": {
+              "PASS": "8d4a5dde-94e1-4136-8eea-fb7756e779f0",
+              "CHALLENGE": "bc7eb614-10ca-4d22-b1d0-74dbacfe2486",
+              "REVIEW": "bc7eb614-10ca-4d22-b1d0-74dbacfe2486",
+              "REJECT": "64f5fba9-4623-4ad1-8f8c-451f0b2824cb",
+              "ERROR": "6a34c198-871b-480c-9920-eaf75a5be8be"
+            },
+            "nodeType": "LnrsOtpDecisionNode",
+            "displayName": "OTP DECISION"
+          },
+          "64f5fba9-4623-4ad1-8f8c-451f0b2824cb": {
+            "x": 1245,
+            "y": 284.76666259765625,
+            "connections": {
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "true": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "MessageNode",
+            "displayName": "OTP FAIL"
+          },
+          "6a34c198-871b-480c-9920-eaf75a5be8be": {
+            "x": 1218,
+            "y": 505.76666259765625,
+            "connections": {
+              "true": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "false": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "MessageNode",
+            "displayName": "INTEGRATION ERROR"
+          },
+          "630e51f8-31fb-4227-84b8-97a563ac1b1f": {
+            "x": 153,
+            "y": 177.76666259765625,
+            "connections": {
+              "ERROR": "6a34c198-871b-480c-9920-eaf75a5be8be",
+              "SUCCESS": "36b99000-38be-4a00-8dc4-1bc2b530f30e"
+            },
+            "nodeType": "PageNode",
+            "displayName": "OTP SELECTION"
+          },
+          "36b99000-38be-4a00-8dc4-1bc2b530f30e": {
+            "x": 375,
+            "y": 446.76666259765625,
+            "connections": {
+              "SUCCESS": "bc7eb614-10ca-4d22-b1d0-74dbacfe2486",
+              "ERROR": "6a34c198-871b-480c-9920-eaf75a5be8be",
+              "OTP_FAIL": "64f5fba9-4623-4ad1-8f8c-451f0b2824cb",
+              "API_ERROR": "64f5fba9-4623-4ad1-8f8c-451f0b2824cb"
+            },
+            "nodeType": "LnrsOtpSendNode",
+            "displayName": "OTP SEND"
+          },
+          "8d4a5dde-94e1-4136-8eea-fb7756e779f0": {
+            "x": 1264,
+            "y": 57.76666259765625,
+            "connections": {
+              "true": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0",
+              "false": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "nodeType": "MessageNode",
+            "displayName": "OTP PASS"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 47,
+            "y": 69
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1538,
+            "y": 114
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1546,
+            "y": 450
+          }
+        }
+      },
+      "nodes": {
+        "bc7eb614-10ca-4d22-b1d0-74dbacfe2486": {
+          "_id": "bc7eb614-10ca-4d22-b1d0-74dbacfe2486",
+          "_rev": "-1981742080",
+          "nodes": [
+            {
+              "_id": "9ee0988b-753f-4658-9597-06da1a9947eb",
+              "nodeType": "LnrsOtpCollectorNode",
+              "displayName": "LexisNexis OTP Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Please enter your one-time passcode."
+          },
+          "pageHeader": {
+            "en": "Two-Factor Authentication"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "SUBMIT",
+              "displayName": "Submit"
+            },
+            {
+              "id": "RETRY",
+              "displayName": "Retry"
+            },
+            {
+              "id": "ERROR",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "97d454d1-3956-4e53-a431-bba015204eae": {
+          "_id": "97d454d1-3956-4e53-a431-bba015204eae",
+          "_rev": "675370567",
+          "orgId": "xxxxxxxx",
+          "apiKey": null,
+          "_type": {
+            "_id": "LnrsOtpDecisionNode",
+            "name": "LexisNexis OTP Decision",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "PASS",
+              "displayName": "Pass"
+            },
+            {
+              "id": "CHALLENGE",
+              "displayName": "Challenge"
+            },
+            {
+              "id": "REVIEW",
+              "displayName": "Review"
+            },
+            {
+              "id": "REJECT",
+              "displayName": "Reject"
+            },
+            {
+              "id": "ERROR",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "64f5fba9-4623-4ad1-8f8c-451f0b2824cb": {
+          "_id": "64f5fba9-4623-4ad1-8f8c-451f0b2824cb",
+          "_rev": "2104725206",
+          "messageYes": {
+            "en": "OK"
+          },
+          "message": {
+            "en": "Identity Failed to Verify.  We are unable to validate your identity via passcode, or the passcode timed out. Please contact your system administrator if this problem persists."
+          },
+          "messageNo": {
+            "en": "OK"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "6a34c198-871b-480c-9920-eaf75a5be8be": {
+          "_id": "6a34c198-871b-480c-9920-eaf75a5be8be",
+          "_rev": "1912349080",
+          "messageYes": {
+            "en": "OK"
+          },
+          "message": {
+            "en": "An integration error has occurred. Please contact your system integrator for assistance."
+          },
+          "messageNo": {},
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "630e51f8-31fb-4227-84b8-97a563ac1b1f": {
+          "_id": "630e51f8-31fb-4227-84b8-97a563ac1b1f",
+          "_rev": "1103857789",
+          "nodes": [
+            {
+              "_id": "753e7e1a-6c52-434f-ad0a-e2207c9bfe48",
+              "nodeType": "LnrsOtpSelectNode",
+              "displayName": "OTP SELECTION"
+            }
+          ],
+          "pageDescription": {
+            "en": "When ready, click the button below to receive a code to your device."
+          },
+          "pageHeader": {
+            "en": "Two-Factor Authentication"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "SUCCESS",
+              "displayName": "Success"
+            },
+            {
+              "id": "ERROR",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "36b99000-38be-4a00-8dc4-1bc2b530f30e": {
+          "_id": "36b99000-38be-4a00-8dc4-1bc2b530f30e",
+          "_rev": "-1308617984",
+          "smsMessage": "Your One Time Password is ${OTP}.${LineBreak}We will never call you for this code.${LineBreak}Your passcode will expire in ${ExpirePeriod} minutes",
+          "emailMessage": "Your One Time Password is ${OTP}.${LineBreak}We will never call you for this code.${LineBreak}Your passcode will expire in ${ExpirePeriod} minutes",
+          "orgId": "xxxxxxxx",
+          "smsPhoneAttribute": "telephoneNumber",
+          "voiceAttribute": "telephoneNumber",
+          "otpLength": 6,
+          "otpExpire": 2,
+          "baseUrl": "https://h-api.online-metrix.net/",
+          "apiKey": null,
+          "attributeSource": "USERDIRCTORY",
+          "emailMailAttribute": "mail",
+          "emailTitle": "Please, check out this email! It's your one time passcode",
+          "policy": "OTP",
+          "_type": {
+            "_id": "LnrsOtpSendNode",
+            "name": "LexisNexis OTP Sender",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "SUCCESS",
+              "displayName": "Success"
+            },
+            {
+              "id": "API_ERROR",
+              "displayName": "API Error"
+            },
+            {
+              "id": "OTP_FAIL",
+              "displayName": "OTP Failure"
+            },
+            {
+              "id": "ERROR",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "8d4a5dde-94e1-4136-8eea-fb7756e779f0": {
+          "_id": "8d4a5dde-94e1-4136-8eea-fb7756e779f0",
+          "_rev": "440521174",
+          "messageYes": {
+            "en": "OK"
+          },
+          "message": {
+            "en": "Two-Factor Authentication - Identity Verified"
+          },
+          "messageNo": {
+            "en": "OK"
+          },
+          "_type": {
+            "_id": "MessageNode",
+            "name": "Message Node",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "9ee0988b-753f-4658-9597-06da1a9947eb": {
+          "_id": "9ee0988b-753f-4658-9597-06da1a9947eb",
+          "_rev": "-1428460089",
+          "otpErrorMessage": "Incorrect passcode entered, please try again.",
+          "message": "Passcode was sent to ${otpDestination}. Please enter it below.",
+          "helpText": "One Time Passcode",
+          "otpBlankMessage": "Blank passcode entered, please try again.",
+          "_type": {
+            "_id": "LnrsOtpCollectorNode",
+            "name": "LexisNexis OTP Collector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "SUBMIT",
+              "displayName": "Submit"
+            },
+            {
+              "id": "RETRY",
+              "displayName": "Retry"
+            },
+            {
+              "id": "ERROR",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "753e7e1a-6c52-434f-ad0a-e2207c9bfe48": {
+          "_id": "753e7e1a-6c52-434f-ad0a-e2207c9bfe48",
+          "_rev": "117611872",
+          "emailButton": "Send Email",
+          "sendSms": true,
+          "sendEmail": true,
+          "smsButton": "Text Me",
+          "voiceButton": "Call Me",
+          "sendVoice": true,
+          "_type": {
+            "_id": "LnrsOtpSelectNode",
+            "name": "LexisNexis OTP Selector",
+            "collection": true
+          },
+          "_outcomes": [
+            {
+              "id": "SUCCESS",
+              "displayName": "Success"
+            },
+            {
+              "id": "ERROR",
+              "displayName": "Error"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
